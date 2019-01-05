@@ -57,5 +57,47 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else {
             ((Button) v).setText("O");
         }
+
+        roundCount++;
+    }
+
+    private boolean checkForWin() {
+        String[][] field = new String[3][3];
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                field[i][j] = buttons[i][j].getText().toString();
+            }
+        }
+
+        for(int i = 0; i < 3) {
+            if(field[i][0].equals(field[i][1])
+                    && field[i][0].equals(field[i][2])
+                    && !field[i][0].equals("")){
+                return true;
+            }
+        }
+
+        for(int j = 0; j < 3) {
+            if(field[0][j].equals(field[1][j])
+                    && field[0][j].equals(field[2][j])
+                    && !field[0][j].equals("")){
+                return true;
+            }
+        }
+
+        if(field[0][0].equals(field[1][1])
+                && field[0][0].equals(field[2][2])
+                && !field[0][0].equals("")){
+            return true;
+        }
+
+        if(field[0][2].equals(field[1][1])
+                && field[0][2].equals(field[2][0])
+                && !field[0][2].equals("")){
+            return true;
+        }
+
+        return false;
     }
 }
