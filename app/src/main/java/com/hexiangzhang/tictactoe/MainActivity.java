@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
 
-        for (int i = 0; i < 3) {
+        for (int i = 0; i < 3; i++) {
             if (field[i][0].equals(field[i][1])
                     && field[i][0].equals(field[i][2])
                     && !field[i][0].equals("")) {
@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
 
-        for (int j = 0; j < 3) {
+        for (int j = 0; j < 3; i++) {
             if (field[0][j].equals(field[1][j])
                     && field[0][j].equals(field[2][j])
                     && !field[0][j].equals("")) {
