@@ -59,6 +59,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         roundCount++;
+
+        if (roundCount >= 5) {
+            if (checkForWin()) {
+                if (player1Turn) {
+                    player1Wins();
+                } else {
+                    player2Wins();
+                }
+            } else if(roundCount == 9){
+                draw();
+            }
+        }
+
+        player1Turn = !player1Turn;
     }
 
     private boolean checkForWin() {
@@ -70,34 +84,46 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
 
-        for(int i = 0; i < 3) {
-            if(field[i][0].equals(field[i][1])
+        for (int i = 0; i < 3) {
+            if (field[i][0].equals(field[i][1])
                     && field[i][0].equals(field[i][2])
-                    && !field[i][0].equals("")){
+                    && !field[i][0].equals("")) {
                 return true;
             }
         }
 
-        for(int j = 0; j < 3) {
-            if(field[0][j].equals(field[1][j])
+        for (int j = 0; j < 3) {
+            if (field[0][j].equals(field[1][j])
                     && field[0][j].equals(field[2][j])
-                    && !field[0][j].equals("")){
+                    && !field[0][j].equals("")) {
                 return true;
             }
         }
 
-        if(field[0][0].equals(field[1][1])
+        if (field[0][0].equals(field[1][1])
                 && field[0][0].equals(field[2][2])
-                && !field[0][0].equals("")){
+                && !field[0][0].equals("")) {
             return true;
         }
 
-        if(field[0][2].equals(field[1][1])
+        if (field[0][2].equals(field[1][1])
                 && field[0][2].equals(field[2][0])
-                && !field[0][2].equals("")){
+                && !field[0][2].equals("")) {
             return true;
         }
 
         return false;
+    }
+
+    private void player1Wins() {
+
+    }
+
+    private void player2Wins() {
+
+    }
+
+    private void draw() {
+
     }
 }
