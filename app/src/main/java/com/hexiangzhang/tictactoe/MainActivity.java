@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -15,7 +16,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private int roundCount;
 
     private int player1Points;
-    private int private2Points;
+    private int player2Points;
 
     private TextView textViewPlayer1;
     private TextView textViewPlayer2;
@@ -67,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 } else {
                     player2Wins();
                 }
-            } else if(roundCount == 9){
+            } else if (roundCount == 9) {
                 draw();
             }
         }
@@ -116,14 +117,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void player1Wins() {
-
+        player1Points++;
+        Toast.makeText(this, "Player 1 Wins!", Toast.LENGTH_SHORT).show();
+        updatePointsText();
+        resetBoard();
     }
 
     private void player2Wins() {
-
+        player2Points++;
+        Toast.makeText(this, "Player 2 Wins!", Toast.LENGTH_SHORT).show();
+        updatePointsText();
+        resetBoard();
     }
 
     private void draw() {
+        Toast.makeText(this, "Draw!", Toast.LENGTH_SHORT).show();
+        resetBoard();
+    }
 
+    private void updatePointsText() {
+        textViewPlayer1.setText("Player 1:" + player1Points);
+        textViewPlayer2.setText("Player 2:" + player2Points);
+    }
+
+    private void resetBoard() {
+        roundCount = 0;
+
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                buttons[i][j].setText("");
+            }
+        }
     }
 }
