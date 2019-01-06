@@ -157,7 +157,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private void delay(int milli) throws InterruptedException {
-        Thread.sleep(milli);
+    private void delay(int milli) {
+        try {
+            Thread.sleep(milli);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
