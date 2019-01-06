@@ -52,8 +52,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        boolean end = false;
-
         if (!((Button) v).getText().toString().equals("")) {
             return;
         }
@@ -67,24 +65,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         roundCount++;
 
-        if (roundCount >= 5) {
+        if (roundCount >= 5 && !gameOver) {
             if (checkForWin()) {
-                if (!gameOver) {
-                    end = true;
-                    if (player1Turn) {
-                        player1Wins();
-                    } else {
-                        player2Wins();
-                    }
+                if (player1Turn) {
+                    player1Wins();
+                } else {
+                    player2Wins();
                 }
+
                 gameOver = true;
             } else if (roundCount == 9) {
-                end = true;
                 draw();
+                gameOver = true;
             }
         }
 
-        if (end) {
+        if (gameOver) {
             ((Button) v).postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -172,6 +168,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 buttons[i][j].setText("");
             }
         }
+
         gameOver = false;
     }
 
