@@ -120,6 +120,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         player1Points++;
         Toast.makeText(this, "Player 1 Wins!", Toast.LENGTH_SHORT).show();
         updatePointsText();
+        delay(500);
         resetBoard(false);
     }
 
@@ -127,11 +128,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         player2Points++;
         Toast.makeText(this, "Player 2 Wins!", Toast.LENGTH_SHORT).show();
         updatePointsText();
+        delay(500);
         resetBoard(false);
     }
 
     private void draw() {
         Toast.makeText(this, "Draw!", Toast.LENGTH_SHORT).show();
+        delay(500);
         resetBoard(false);
     }
 
@@ -152,5 +155,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 buttons[i][j].setText("");
             }
         }
+    }
+
+    private void delay(int milli) throws InterruptedException {
+        Thread.sleep(milli);
     }
 }
