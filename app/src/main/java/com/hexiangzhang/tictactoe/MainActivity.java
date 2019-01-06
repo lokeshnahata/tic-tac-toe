@@ -63,6 +63,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if (roundCount >= 5) {
             if (checkForWin()) {
+                ((Button) v).postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        resetBoard(false);
+                    }
+                }, 2000);
+//                toastDelay();
                 if (player1Turn) {
                     player1Wins();
                 } else {
@@ -120,22 +127,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         player1Points++;
         Toast.makeText(this, "Player 1 Wins!", Toast.LENGTH_SHORT).show();
         updatePointsText();
-        delay(500);
-        resetBoard(false);
+//        resetBoard(false);
     }
 
     private void player2Wins() {
         player2Points++;
         Toast.makeText(this, "Player 2 Wins!", Toast.LENGTH_SHORT).show();
         updatePointsText();
-        delay(500);
-        resetBoard(false);
+//        resetBoard(false);
     }
 
     private void draw() {
         Toast.makeText(this, "Draw!", Toast.LENGTH_SHORT).show();
-        delay(500);
-        resetBoard(false);
+//        resetBoard(false);
     }
 
     private void updatePointsText() {
@@ -146,7 +150,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void resetBoard(boolean hard) {
         roundCount = 0;
 
-        if(hard) {
+        if (hard) {
             player1Turn = true;
         }
 
@@ -157,11 +161,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private void delay(int milli) {
-        try {
-            Thread.sleep(milli);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
+//    private void toastDelay() {
+//        sleep
+//    }
 }
