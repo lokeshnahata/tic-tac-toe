@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
 
-        if(end){
+        if (end) {
             ((Button) v).postDelayed(new Runnable() {
                 @Override
                 public void run() {
