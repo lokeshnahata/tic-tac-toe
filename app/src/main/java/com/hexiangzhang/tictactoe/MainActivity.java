@@ -1,6 +1,7 @@
 package com.hexiangzhang.tictactoe;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -49,6 +50,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+        boolean end = false;
+
         if (!((Button) v).getText().toString().equals("")) {
             return;
         }
@@ -63,21 +66,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if (roundCount >= 5) {
             if (checkForWin()) {
-                ((Button) v).postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        resetBoard(false);
-                    }
-                }, 2000);
-//                toastDelay();
+                end = true;
                 if (player1Turn) {
                     player1Wins();
                 } else {
                     player2Wins();
                 }
             } else if (roundCount == 9) {
+                end = true;
                 draw();
             }
+        }
+
+        if(end){
+            ((Button) v).postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    resetBoard(false);
+                }
+            }, 2000);
         }
 
         player1Turn = !player1Turn;
@@ -125,21 +132,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void player1Wins() {
         player1Points++;
-        Toast.makeText(this, "Player 1 Wins!", Toast.LENGTH_SHORT).show();
+        shorterToast("Player 1 Wins!");
         updatePointsText();
-//        resetBoard(false);
     }
 
     private void player2Wins() {
         player2Points++;
-        Toast.makeText(this, "Player 2 Wins!", Toast.LENGTH_SHORT).show();
+        shorterToast("Player 2 Wins!");
         updatePointsText();
-//        resetBoard(false);
     }
 
     private void draw() {
-        Toast.makeText(this, "Draw!", Toast.LENGTH_SHORT).show();
-//        resetBoard(false);
+        shorterToast("Draw!");
     }
 
     private void updatePointsText() {
@@ -161,7 +165,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-//    private void toastDelay() {
-//        sleep
-//    }
+    private void shorterToast(String message) {
+        final Toast t = Toast.makeText(this, message, Toast.LENGTH_SHORT);
+        t.show();
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                t.cancel();
+            }
+        }, 500);
+    }
 }
