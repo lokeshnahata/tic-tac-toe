@@ -11,11 +11,9 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button[][] buttons = new Button[3][3];
-
+    
     private boolean gameOver = false;
-
     private boolean player1Turn = true;
-
     private int roundCount;
 
     private int player1Points;
@@ -168,7 +166,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 buttons[i][j].setText("");
             }
         }
-
         gameOver = false;
     }
 
